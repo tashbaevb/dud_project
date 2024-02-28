@@ -18,13 +18,13 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    @Value("${jwt.secret}")
+    @Value("${JWT.SECRET}")
     private String secret;
 
-    @Value("${jwt.accessTokenExpirationTime}")
+    @Value("${JWT.ACCESSTOKENEXPIRATIONTIME}")
     private Long accessTokenExpirationTime;
 
-    @Value("${jwt.refreshTokenExpirationTime}")
+    @Value("${JWT.REFRESHTOKENEXPIRATIONTIME}")
     private Long refreshTokenExpirationTime;
 
 
