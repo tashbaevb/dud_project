@@ -24,7 +24,7 @@ public class AuthServiceImpl implements AuthService {
     private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${RESETURL}")
+    @Value("${resetUrl}")
     private String resetUrl;
 
     @Override
