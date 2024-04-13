@@ -15,5 +15,4 @@ public interface UserService {
     UserResponseDto getUserProfile(Authentication authentication);
 
     List<User> getAll();
-
 }

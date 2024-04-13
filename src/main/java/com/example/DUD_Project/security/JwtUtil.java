@@ -52,7 +52,7 @@ public class JwtUtil {
                 .parserBuilder()
                 .setSigningKey(getSignKey())
                 .build()
-                .parseClaimsJws(token) // Hier ändern
+                .parseClaimsJws(token)
                 .getBody();
     }
 
