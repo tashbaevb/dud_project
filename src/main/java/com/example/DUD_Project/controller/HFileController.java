@@ -1,7 +1,9 @@
 package com.example.DUD_Project.controller;
 
 import com.example.DUD_Project.entity.HFile;
+import com.example.DUD_Project.entity.Lesson;
 import com.example.DUD_Project.service.HFileService;
+import com.example.DUD_Project.service.LessonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -19,10 +21,19 @@ import java.io.IOException;
 public class HFileController {
 
     private final HFileService hFileService;
+    private final LessonService lessonService;
+
 
     @PostMapping("/create")
-    public HFile uploadFile(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
-        return hFileService.save(name, file);
+    public HFile uploadFile(@RequestParam("name") String name,
+                            @RequestParam("file") MultipartFile file, @RequestParam("lessonId") Integer lessonId) {
+
+        Lesson lesson = lessonService.findById(lessonId);
+        if (lesson == null) {
+            throw new IllegalArgumentException("Lesson with id " + lessonId + " not found.");
+        }
+
+        return hFileService.save(name, file, lesson);
     }
 
 

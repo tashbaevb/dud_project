@@ -1,29 +1,28 @@
 package com.example.DUD_Project.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Entity
-@Table(name = "hören_file")
-@Getter
-@Setter
+@Table(name = "lessons")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class HFile {
+public class Lesson {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    String name;
+    @Column(name = "lesson_name")
+    String lessonName;
 
-    @Lob
-    byte[] fileData;
-
-    @OneToOne
-    @JoinColumn(name = "lesson_id")
-    Lesson lesson;
+    @OneToOne(mappedBy = "lesson", cascade = CascadeType.ALL)
+    HFile files;
 }
