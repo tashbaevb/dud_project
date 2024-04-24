@@ -1,6 +1,6 @@
 package com.example.DUD_Project.service.security;
 
-import com.example.DUD_Project.entity.User;
+import com.example.DUD_Project.entity.user.User;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 

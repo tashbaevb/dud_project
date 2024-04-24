@@ -1,6 +1,6 @@
 package com.example.DUD_Project.security;
 
-import com.example.DUD_Project.entity.User;
+import com.example.DUD_Project.entity.user.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

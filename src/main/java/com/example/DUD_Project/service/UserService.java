@@ -1,7 +1,7 @@
 package com.example.DUD_Project.service;
 
-import com.example.DUD_Project.dto.UserResponseDto;
-import com.example.DUD_Project.entity.User;
+import com.example.DUD_Project.dto.user.UserResponseDto;
+import com.example.DUD_Project.entity.user.User;
 import org.springframework.security.core.Authentication;
 
 import java.util.List;

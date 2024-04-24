@@ -4,20 +4,21 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-
 @Entity
-@Table(name = "lessons")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Lesson {
-
+public class Grammar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     String title, description;
+
+    @OneToOne
+    @JoinColumn(name = "lesson_id")
+    Lesson lesson;
 }

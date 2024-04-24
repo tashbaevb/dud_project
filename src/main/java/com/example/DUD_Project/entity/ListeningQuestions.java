@@ -1,27 +1,30 @@
 package com.example.DUD_Project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.mapping.Join;
 
 @Entity
-@Table(name = "user_niveau")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UsersLevel {
+public class ListeningQuestions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    String question;
+    String option1, option2, option3;
+    int correctOption;
+
 
     @ManyToOne
-    @JoinColumn(name = "niveau_id")
-    Level level;
+    @JoinColumn(name = "listening_id")
+    @JsonIgnore
+    Listening listening;
 }

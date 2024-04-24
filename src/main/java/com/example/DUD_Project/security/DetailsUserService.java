@@ -1,6 +1,6 @@
 package com.example.DUD_Project.security;
 
-import com.example.DUD_Project.entity.User;
+import com.example.DUD_Project.entity.user.User;
 import com.example.DUD_Project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

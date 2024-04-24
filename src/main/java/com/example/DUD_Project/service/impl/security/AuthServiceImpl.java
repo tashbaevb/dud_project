@@ -1,6 +1,6 @@
 package com.example.DUD_Project.service.impl.security;
 
-import com.example.DUD_Project.entity.User;
+import com.example.DUD_Project.entity.user.User;
 import com.example.DUD_Project.enums.UserRole;
 import com.example.DUD_Project.repository.UserRepository;
 import com.example.DUD_Project.service.security.AuthService;

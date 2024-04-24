@@ -1,23 +1,27 @@
-package com.example.DUD_Project.entity;
+package com.example.DUD_Project.entity.user;
 
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-
 @Entity
-@Table(name = "lessons")
+@Table(name = "user_niveau")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Lesson {
-
+public class UsersLevel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    String title, description;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
+
+    @ManyToOne
+    @JoinColumn(name = "niveau_id")
+    Level level;
 }

@@ -1,7 +1,7 @@
 package com.example.DUD_Project.controller;
 
-import com.example.DUD_Project.dto.UserDto;
-import com.example.DUD_Project.entity.User;
+import com.example.DUD_Project.dto.user.UserDto;
+import com.example.DUD_Project.entity.user.User;
 import com.example.DUD_Project.mappers.UserMapper;
 import com.example.DUD_Project.security.JwtUtil;
 import com.example.DUD_Project.service.security.AuthService;
