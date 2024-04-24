@@ -1,4 +1,4 @@
-package com.example.DUD_Project.entity.listening;
+package com.example.DUD_Project.entity.lessonTypes.reading;
 
 import com.example.DUD_Project.entity.Lesson;
 import jakarta.persistence.*;
@@ -13,17 +13,16 @@ import java.util.List;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Listening {
+public class Reading {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     String title, description;
-    String mp3FilePath;
 
-    @OneToMany(mappedBy = "listening", cascade = CascadeType.ALL)
-    List<ListeningQuestions> questions;
+    @OneToMany(mappedBy = "reading", cascade = CascadeType.ALL)
+    List<ReadingQuestions> questions;
 
     @OneToOne
     @JoinColumn(name = "lesson_id")

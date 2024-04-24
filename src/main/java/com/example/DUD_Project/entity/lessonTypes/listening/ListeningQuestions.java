@@ -1,4 +1,4 @@
-package com.example.DUD_Project.entity;
+package com.example.DUD_Project.entity.lessonTypes.listening;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ReadingQuestions {
+public class ListeningQuestions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +21,9 @@ public class ReadingQuestions {
     String option1, option2, option3;
     int correctOption;
 
+
     @ManyToOne
-    @JoinColumn(name = "reading_id")
+    @JoinColumn(name = "listening_id")
     @JsonIgnore
-    Reading reading;
+    Listening listening;
 }

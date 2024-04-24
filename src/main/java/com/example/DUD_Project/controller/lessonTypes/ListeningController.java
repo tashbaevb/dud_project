@@ -1,9 +1,9 @@
-package com.example.DUD_Project.controller;
+package com.example.DUD_Project.controller.lessonTypes;
 
-import com.example.DUD_Project.entity.listening.AnswerRequest;
-import com.example.DUD_Project.entity.listening.Listening;
-import com.example.DUD_Project.entity.listening.ListeningQuestions;
-import com.example.DUD_Project.service.ListeningService;
+import com.example.DUD_Project.entity.lessonTypes.listening.AnswerRequest;
+import com.example.DUD_Project.entity.lessonTypes.listening.Listening;
+import com.example.DUD_Project.entity.lessonTypes.listening.ListeningQuestions;
+import com.example.DUD_Project.service.lessonTypes.ListeningService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +19,8 @@ public class ListeningController {
     private final ListeningService listeningService;
 
     @PostMapping("/create/{lessonId}")
-    public ResponseEntity<Listening> createListening(
-            @PathVariable Integer lessonId,
-            @RequestParam("file") MultipartFile file,
-            @RequestParam("title") String title,
-            @RequestParam("description") String description) {
+    public ResponseEntity<Listening> createListening(@PathVariable Integer lessonId, @RequestParam("file") MultipartFile file,
+                                                     @RequestParam("title") String title, @RequestParam("description") String description) {
         Listening listening = new Listening();
         listening.setTitle(title);
         listening.setDescription(description);
@@ -36,12 +33,6 @@ public class ListeningController {
         return listeningService.addQuestionsAndAnswers(listeningId, questions);
     }
 
-    @GetMapping("/get/{listeningId}")
-    public ResponseEntity<?> getListening(@PathVariable Integer listeningId) {
-        Listening listening = listeningService.getListening(listeningId);
-
-        return ResponseEntity.ok().body(listening);
-    }
 
     @PostMapping("/check/{listeningId}")
     public int checkAnswers(@PathVariable Integer listeningId, @RequestBody List<AnswerRequest> answers) {

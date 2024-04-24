@@ -1,13 +1,13 @@
-package com.example.DUD_Project.service.impl;
+package com.example.DUD_Project.service.impl.lessonTypes;
 
 import com.example.DUD_Project.entity.Lesson;
-import com.example.DUD_Project.entity.Reading;
-import com.example.DUD_Project.entity.ReadingQuestions;
-import com.example.DUD_Project.entity.listening.AnswerRequest;
+import com.example.DUD_Project.entity.lessonTypes.reading.Reading;
+import com.example.DUD_Project.entity.lessonTypes.reading.ReadingQuestions;
+import com.example.DUD_Project.entity.lessonTypes.listening.AnswerRequest;
 import com.example.DUD_Project.repository.LessonRepository;
-import com.example.DUD_Project.repository.ReadingQuestionsRepository;
-import com.example.DUD_Project.repository.ReadingRepository;
-import com.example.DUD_Project.service.ReadingService;
+import com.example.DUD_Project.repository.lessonTypes.reading.ReadingQuestionsRepository;
+import com.example.DUD_Project.repository.lessonTypes.reading.ReadingRepository;
+import com.example.DUD_Project.service.lessonTypes.ReadingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

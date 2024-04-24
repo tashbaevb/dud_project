@@ -1,6 +1,6 @@
-package com.example.DUD_Project.service;
+package com.example.DUD_Project.service.lessonTypes;
 
-import com.example.DUD_Project.entity.Grammar;
+import com.example.DUD_Project.entity.lessonTypes.Grammar;
 
 public interface GrammarService {
 

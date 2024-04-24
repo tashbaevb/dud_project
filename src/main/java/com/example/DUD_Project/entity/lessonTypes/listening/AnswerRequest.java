@@ -1,4 +1,4 @@
-package com.example.DUD_Project.entity.listening;
+package com.example.DUD_Project.entity.lessonTypes.listening;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

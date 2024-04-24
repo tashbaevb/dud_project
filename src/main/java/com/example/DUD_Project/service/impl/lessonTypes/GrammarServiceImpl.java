@@ -1,10 +1,10 @@
-package com.example.DUD_Project.service.impl;
+package com.example.DUD_Project.service.impl.lessonTypes;
 
-import com.example.DUD_Project.entity.Grammar;
+import com.example.DUD_Project.entity.lessonTypes.Grammar;
 import com.example.DUD_Project.entity.Lesson;
-import com.example.DUD_Project.repository.GrammarRepository;
+import com.example.DUD_Project.repository.lessonTypes.GrammarRepository;
 import com.example.DUD_Project.repository.LessonRepository;
-import com.example.DUD_Project.service.GrammarService;
+import com.example.DUD_Project.service.lessonTypes.GrammarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

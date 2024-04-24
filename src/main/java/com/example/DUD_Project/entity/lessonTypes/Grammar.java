@@ -1,10 +1,9 @@
-package com.example.DUD_Project.entity;
+package com.example.DUD_Project.entity.lessonTypes;
 
+import com.example.DUD_Project.entity.Lesson;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -12,16 +11,13 @@ import java.util.List;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Reading {
+public class Grammar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     String title, description;
-
-    @OneToMany(mappedBy = "reading", cascade = CascadeType.ALL)
-    List<ReadingQuestions> questions;
 
     @OneToOne
     @JoinColumn(name = "lesson_id")

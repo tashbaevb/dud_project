@@ -1,8 +1,8 @@
-package com.example.DUD_Project.service;
+package com.example.DUD_Project.service.lessonTypes;
 
-import com.example.DUD_Project.entity.listening.AnswerRequest;
-import com.example.DUD_Project.entity.listening.Listening;
-import com.example.DUD_Project.entity.listening.ListeningQuestions;
+import com.example.DUD_Project.entity.lessonTypes.listening.AnswerRequest;
+import com.example.DUD_Project.entity.lessonTypes.listening.Listening;
+import com.example.DUD_Project.entity.lessonTypes.listening.ListeningQuestions;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

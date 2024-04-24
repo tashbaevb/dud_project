@@ -1,7 +1,7 @@
-package com.example.DUD_Project.controller;
+package com.example.DUD_Project.controller.lessonTypes;
 
-import com.example.DUD_Project.entity.Grammar;
-import com.example.DUD_Project.service.GrammarService;
+import com.example.DUD_Project.entity.lessonTypes.Grammar;
+import com.example.DUD_Project.service.lessonTypes.GrammarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

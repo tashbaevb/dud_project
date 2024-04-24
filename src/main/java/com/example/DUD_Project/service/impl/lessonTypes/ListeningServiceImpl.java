@@ -1,13 +1,13 @@
-package com.example.DUD_Project.service.impl;
+package com.example.DUD_Project.service.impl.lessonTypes;
 
-import com.example.DUD_Project.entity.listening.AnswerRequest;
+import com.example.DUD_Project.entity.lessonTypes.listening.AnswerRequest;
 import com.example.DUD_Project.entity.Lesson;
-import com.example.DUD_Project.entity.listening.Listening;
-import com.example.DUD_Project.entity.listening.ListeningQuestions;
+import com.example.DUD_Project.entity.lessonTypes.listening.Listening;
+import com.example.DUD_Project.entity.lessonTypes.listening.ListeningQuestions;
 import com.example.DUD_Project.repository.LessonRepository;
-import com.example.DUD_Project.repository.ListeningQuestionsRepository;
-import com.example.DUD_Project.repository.ListeningRepository;
-import com.example.DUD_Project.service.ListeningService;
+import com.example.DUD_Project.repository.lessonTypes.listening.ListeningQuestionsRepository;
+import com.example.DUD_Project.repository.lessonTypes.listening.ListeningRepository;
+import com.example.DUD_Project.service.lessonTypes.ListeningService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;

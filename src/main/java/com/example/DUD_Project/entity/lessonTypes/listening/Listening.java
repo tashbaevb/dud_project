@@ -1,8 +1,11 @@
-package com.example.DUD_Project.entity;
+package com.example.DUD_Project.entity.lessonTypes.listening;
 
+import com.example.DUD_Project.entity.Lesson;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -10,13 +13,17 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Grammar {
+public class Listening {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     String title, description;
+    String mp3FilePath;
+
+    @OneToMany(mappedBy = "listening", cascade = CascadeType.ALL)
+    List<ListeningQuestions> questions;
 
     @OneToOne
     @JoinColumn(name = "lesson_id")

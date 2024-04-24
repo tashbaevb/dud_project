@@ -1,9 +1,9 @@
-package com.example.DUD_Project.controller;
+package com.example.DUD_Project.controller.lessonTypes;
 
-import com.example.DUD_Project.entity.Reading;
-import com.example.DUD_Project.entity.ReadingQuestions;
-import com.example.DUD_Project.entity.listening.AnswerRequest;
-import com.example.DUD_Project.service.ReadingService;
+import com.example.DUD_Project.entity.lessonTypes.reading.Reading;
+import com.example.DUD_Project.entity.lessonTypes.reading.ReadingQuestions;
+import com.example.DUD_Project.entity.lessonTypes.listening.AnswerRequest;
+import com.example.DUD_Project.service.lessonTypes.ReadingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

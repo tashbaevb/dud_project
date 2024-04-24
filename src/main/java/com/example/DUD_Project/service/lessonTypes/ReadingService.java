@@ -1,8 +1,8 @@
-package com.example.DUD_Project.service;
+package com.example.DUD_Project.service.lessonTypes;
 
-import com.example.DUD_Project.entity.Reading;
-import com.example.DUD_Project.entity.ReadingQuestions;
-import com.example.DUD_Project.entity.listening.AnswerRequest;
+import com.example.DUD_Project.entity.lessonTypes.reading.Reading;
+import com.example.DUD_Project.entity.lessonTypes.reading.ReadingQuestions;
+import com.example.DUD_Project.entity.lessonTypes.listening.AnswerRequest;
 
 import java.util.List;
 

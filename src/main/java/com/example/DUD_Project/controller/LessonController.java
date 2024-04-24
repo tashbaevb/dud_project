@@ -1,15 +1,16 @@
 package com.example.DUD_Project.controller;
 
 import com.example.DUD_Project.dto.GrammarResponseDto;
-import com.example.DUD_Project.entity.Grammar;
+import com.example.DUD_Project.entity.lessonTypes.Grammar;
 import com.example.DUD_Project.entity.Lesson;
-import com.example.DUD_Project.entity.Reading;
-import com.example.DUD_Project.entity.listening.Listening;
-import com.example.DUD_Project.service.GrammarService;
+import com.example.DUD_Project.entity.lessonTypes.reading.Reading;
+import com.example.DUD_Project.entity.lessonTypes.listening.Listening;
+import com.example.DUD_Project.service.lessonTypes.GrammarService;
 import com.example.DUD_Project.service.LessonService;
-import com.example.DUD_Project.service.ListeningService;
-import com.example.DUD_Project.service.ReadingService;
+import com.example.DUD_Project.service.lessonTypes.ListeningService;
+import com.example.DUD_Project.service.lessonTypes.ReadingService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,21 +32,22 @@ public class LessonController {
     @GetMapping("/get/grammar/{grammarId}")
     public Object getLesson(@PathVariable Integer grammarId) {
         Grammar grammar = grammarService.getGrammarById(grammarId);
-        if (grammar == null) {
-            return "Lesson not found";
-        }
 
-        return new GrammarResponseDto(grammar.getTitle(), grammar.getDescription());
+        return grammar != null ? new GrammarResponseDto(grammar.getTitle(), grammar.getDescription()) : ResponseEntity.notFound().build();
     }
 
 
     @GetMapping("/get/listening/{listeningId}")
-    public Listening getListening(@PathVariable Integer listeningId) {
-        return listeningService.getListening(listeningId);
+    public ResponseEntity<?> getListening(@PathVariable Integer listeningId) {
+        Listening listening = listeningService.getListening(listeningId);
+
+        return listening != null ? ResponseEntity.ok().body(listening) : ResponseEntity.notFound().build();
     }
 
     @GetMapping("/get/reading/{readingId}")
-    public Reading getReading(@PathVariable Integer readingId) {
-        return readingService.getReading(readingId);
+    public ResponseEntity<?> getReading(@PathVariable Integer readingId) {
+        Reading reading = readingService.getReading(readingId);
+
+        return reading != null ? ResponseEntity.ok().body(reading) : ResponseEntity.notFound().build();
     }
 }
