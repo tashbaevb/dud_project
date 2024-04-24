@@ -1,5 +1,6 @@
 package com.example.DUD_Project.controller;
 
+import com.example.DUD_Project.entity.AnswerRequest;
 import com.example.DUD_Project.entity.Listening;
 import com.example.DUD_Project.entity.ListeningQuestions;
 import com.example.DUD_Project.service.ListeningService;
@@ -28,5 +29,10 @@ public class ListeningController {
     @GetMapping("/get/{listeningId}")
     public Listening getListening(@PathVariable Integer listeningId) {
         return listeningService.getListening(listeningId);
+    }
+
+    @PostMapping("/check/{listeningId}")
+    public int checkAnswers(@PathVariable Integer listeningId, @RequestBody List<AnswerRequest> answers) {
+        return listeningService.checkAnswers(listeningId, answers);
     }
 }

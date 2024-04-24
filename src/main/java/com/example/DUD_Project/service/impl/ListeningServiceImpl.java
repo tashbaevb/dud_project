@@ -1,5 +1,6 @@
 package com.example.DUD_Project.service.impl;
 
+import com.example.DUD_Project.entity.AnswerRequest;
 import com.example.DUD_Project.entity.Lesson;
 import com.example.DUD_Project.entity.Listening;
 import com.example.DUD_Project.entity.ListeningQuestions;
@@ -47,5 +48,25 @@ public class ListeningServiceImpl implements ListeningService {
     @Override
     public Listening getListening(Integer listeningId) {
         return listeningRepository.findById(listeningId).orElse(null);
+    }
+
+
+    @Override
+    public int checkAnswers(Integer listeningId, List<AnswerRequest> answers) {
+        Listening listening = listeningRepository.findById(listeningId).orElse(null);
+        if (listening == null) {
+            return -1;
+        }
+
+        int correctAnswers = 0;
+        List<ListeningQuestions> questions = listening.getQuestions();
+        for (int i = 0; i < questions.size(); i++) {
+            ListeningQuestions question = questions.get(i);
+            if (answers.get(i).getSelectedOption() == question.getCorrectOption()) {
+                correctAnswers++;
+            }
+        }
+
+        return correctAnswers;
     }
 }
