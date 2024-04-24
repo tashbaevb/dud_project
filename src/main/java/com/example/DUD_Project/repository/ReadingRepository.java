@@ -1,9 +1,9 @@
 package com.example.DUD_Project.repository;
 
-import com.example.DUD_Project.entity.listening.ListeningQuestions;
+import com.example.DUD_Project.entity.Reading;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ListeningQuestionsRepository extends JpaRepository<ListeningQuestions, Integer> {
+public interface ReadingRepository extends JpaRepository<Reading, Integer> {
 }

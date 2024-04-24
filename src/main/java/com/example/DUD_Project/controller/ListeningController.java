@@ -1,11 +1,13 @@
 package com.example.DUD_Project.controller;
 
-import com.example.DUD_Project.entity.AnswerRequest;
-import com.example.DUD_Project.entity.Listening;
-import com.example.DUD_Project.entity.ListeningQuestions;
+import com.example.DUD_Project.entity.listening.AnswerRequest;
+import com.example.DUD_Project.entity.listening.Listening;
+import com.example.DUD_Project.entity.listening.ListeningQuestions;
 import com.example.DUD_Project.service.ListeningService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,8 +19,16 @@ public class ListeningController {
     private final ListeningService listeningService;
 
     @PostMapping("/create/{lessonId}")
-    public Listening createListening(@PathVariable Integer lessonId, @RequestBody Listening listening) {
-        return listeningService.createListening(lessonId, listening);
+    public ResponseEntity<Listening> createListening(
+            @PathVariable Integer lessonId,
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("title") String title,
+            @RequestParam("description") String description) {
+        Listening listening = new Listening();
+        listening.setTitle(title);
+        listening.setDescription(description);
+        Listening createdListening = listeningService.createListening(lessonId, listening, file);
+        return ResponseEntity.ok().body(createdListening);
     }
 
     @PostMapping("/add/questionsAndAnswer/{listeningId}")
@@ -27,8 +37,10 @@ public class ListeningController {
     }
 
     @GetMapping("/get/{listeningId}")
-    public Listening getListening(@PathVariable Integer listeningId) {
-        return listeningService.getListening(listeningId);
+    public ResponseEntity<?> getListening(@PathVariable Integer listeningId) {
+        Listening listening = listeningService.getListening(listeningId);
+
+        return ResponseEntity.ok().body(listening);
     }
 
     @PostMapping("/check/{listeningId}")

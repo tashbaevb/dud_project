@@ -1,10 +1,10 @@
 package com.example.DUD_Project.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.mapping.Join;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -12,19 +12,18 @@ import org.hibernate.mapping.Join;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ListeningQuestions {
+public class Reading {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    String question;
-    String option1, option2, option3;
-    int correctOption;
+    String title, description;
 
+    @OneToMany(mappedBy = "reading", cascade = CascadeType.ALL)
+    List<ReadingQuestions> questions;
 
-    @ManyToOne
-    @JoinColumn(name = "listening_id")
-    @JsonIgnore
-    Listening listening;
+    @OneToOne
+    @JoinColumn(name = "lesson_id")
+    Lesson lesson;
 }
