@@ -84,16 +84,6 @@ public class ListeningServiceImpl implements ListeningService {
         return listening;
     }
 
-//    public String getMp3Url(String mp3Path) {
-//        URI mp3Uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-//                .path("/mp3/")
-//                .path(mp3Path)
-//                .build()
-//                .toUri();
-//
-//        return mp3Uri.toString();
-//    }
-
 
     @Override
     public int checkAnswers(Integer listeningId, List<AnswerRequest> answers) {
