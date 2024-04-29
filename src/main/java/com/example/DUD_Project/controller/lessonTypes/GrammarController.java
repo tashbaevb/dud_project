@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/grammar")
 public class GrammarController {
 
     private final GrammarService grammarService;
@@ -14,10 +15,5 @@ public class GrammarController {
     @PostMapping("/create/{lessonId}")
     public Grammar createGrammar(@PathVariable Integer lessonId, @RequestBody Grammar grammar) {
         return grammarService.createGrammar(lessonId, grammar);
-    }
-
-    @GetMapping("/get/{grammarId}")
-    public Grammar getGrammar(@PathVariable Integer grammarId) {
-        return grammarService.getGrammarById(grammarId);
     }
 }

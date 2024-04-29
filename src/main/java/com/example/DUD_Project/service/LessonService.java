@@ -4,7 +4,5 @@ import com.example.DUD_Project.entity.Lesson;
 
 public interface LessonService {
 
-    Lesson createLesson(Lesson lesson);
-
-    Lesson findById(Integer id);
+    Lesson createLesson(Lesson lesson, Integer levelId);
 }

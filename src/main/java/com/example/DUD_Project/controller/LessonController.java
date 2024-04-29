@@ -23,9 +23,9 @@ public class LessonController {
     private final ListeningService listeningService;
     private final ReadingService readingService;
 
-    @PostMapping("/create")
-    public Lesson create(@RequestBody Lesson lesson) {
-        return lessonService.createLesson(lesson);
+    @PostMapping("/create/{levelId}")
+    public Lesson create(@RequestBody Lesson lesson, @PathVariable Integer levelId) {
+        return lessonService.createLesson(lesson, levelId);
     }
 
 
@@ -43,6 +43,7 @@ public class LessonController {
 
         return listening != null ? ResponseEntity.ok().body(listening) : ResponseEntity.notFound().build();
     }
+
 
     @GetMapping("/get/reading/{readingId}")
     public ResponseEntity<?> getReading(@PathVariable Integer readingId) {

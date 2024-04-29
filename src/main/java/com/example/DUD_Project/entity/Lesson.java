@@ -1,5 +1,6 @@
 package com.example.DUD_Project.entity;
 
+import com.example.DUD_Project.entity.user.Level;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -20,4 +21,8 @@ public class Lesson {
     Integer id;
 
     String title, description;
+
+    @ManyToOne
+    @JoinColumn(name = "level_id")
+    Level level;
 }

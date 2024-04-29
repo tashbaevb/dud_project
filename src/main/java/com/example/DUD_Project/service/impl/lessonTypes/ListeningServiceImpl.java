@@ -77,22 +77,22 @@ public class ListeningServiceImpl implements ListeningService {
     public Listening getListening(Integer listeningId) {
         Listening listening = listeningRepository.findById(listeningId).orElse(null);
         if (listening != null) {
-            String mp3Url = getMp3Url(listening.getMp3FilePath());
-            listening.setMp3FilePath(mp3Url);
+            String mp3FileName = Paths.get(listening.getMp3FilePath()).getFileName().toString();
+            listening.setMp3FilePath("/hFile/" + mp3FileName);
         }
 
         return listening;
     }
 
-    public String getMp3Url(String mp3Path) {
-        URI mp3Uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/mp3/")
-                .path(mp3Path)
-                .build()
-                .toUri();
-
-        return mp3Uri.toString();
-    }
+//    public String getMp3Url(String mp3Path) {
+//        URI mp3Uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+//                .path("/mp3/")
+//                .path(mp3Path)
+//                .build()
+//                .toUri();
+//
+//        return mp3Uri.toString();
+//    }
 
 
     @Override
