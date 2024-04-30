@@ -1,7 +1,7 @@
 package com.example.DUD_Project.service.impl;
 
 import com.example.DUD_Project.entity.Lesson;
-import com.example.DUD_Project.entity.user.Level;
+import com.example.DUD_Project.entity.Level;
 import com.example.DUD_Project.repository.LessonRepository;
 import com.example.DUD_Project.repository.LevelRepository;
 import com.example.DUD_Project.service.LessonService;

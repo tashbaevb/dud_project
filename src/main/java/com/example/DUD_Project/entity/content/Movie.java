@@ -1,5 +1,6 @@
 package com.example.DUD_Project.entity.content;
 
+import com.example.DUD_Project.entity.Level;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,7 +25,7 @@ public class Movie {
 
     String filePath;
 
-    @OneToMany(mappedBy = "movie")
-    @JsonIgnore
-    Set<MovieGenreAssociation> associations = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "level_id")
+    Level level;
 }

@@ -1,11 +1,8 @@
-package com.example.DUD_Project.entity.content;
+package com.example.DUD_Project.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -13,14 +10,11 @@ import java.util.Set;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class MovieGenre {
+public class Level {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Long id;
 
-    String genre;
-
-    @OneToMany(mappedBy = "genre")
-    Set<MovieGenreAssociation> associations = new HashSet<>();
+    String levelName; // A1, A2, etc.
 }

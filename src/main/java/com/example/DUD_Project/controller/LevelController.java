@@ -1,6 +1,6 @@
 package com.example.DUD_Project.controller;
 
-import com.example.DUD_Project.entity.user.Level;
+import com.example.DUD_Project.entity.Level;
 import com.example.DUD_Project.service.LevelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,4 +1,4 @@
-package com.example.DUD_Project.dto;
+package com.example.DUD_Project.dto.lessonTypes;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

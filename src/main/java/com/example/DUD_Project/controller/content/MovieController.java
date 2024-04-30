@@ -1,18 +1,16 @@
 package com.example.DUD_Project.controller.content;
 
+import com.example.DUD_Project.dto.LevelDto;
+import com.example.DUD_Project.dto.content.MovieDto;
 import com.example.DUD_Project.entity.content.Movie;
-import com.example.DUD_Project.entity.content.MovieGenre;
-import com.example.DUD_Project.entity.content.MovieGenreAssociation;
-import com.example.DUD_Project.service.MovieGenreService;
-import com.example.DUD_Project.service.MovieService;
+import com.example.DUD_Project.service.content.MovieService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,52 +18,36 @@ import java.util.Set;
 public class MovieController {
 
     private final MovieService movieService;
-    private final MovieGenreService movieGenreService;
 
     @PostMapping("/create")
-    public ResponseEntity<Movie> createMovie(@RequestParam("file") MultipartFile file,
-                                             @RequestParam("title") String title,
-                                             @RequestParam("description") String description,
-                                             @RequestParam("country") String country,
-                                             @RequestParam("genres") List<String> genres) {
-        // Создаем новый фильм
-        Movie movie = new Movie();
-        movie.setTitle(title);
-        movie.setDescription(description);
-        movie.setCountry(country);
+    public ResponseEntity<MovieDto> createMovie(@RequestParam("file") MultipartFile file,
+                                                @RequestParam("title") String title,
+                                                @RequestParam("description") String description,
+                                                @RequestParam("country") String country,
+                                                @RequestParam("levelId") Integer levelId) {
+        MovieDto movieDto = new MovieDto();
+        movieDto.setTitle(title);
+        movieDto.setDescription(description);
+        movieDto.setCountry(country);
 
-        // Создаем и сохраняем жанры
-        Set<MovieGenre> movieGenres = new HashSet<>();
-        for (String genreName : genres) {
-            MovieGenre genre = new MovieGenre();
-            genre.setGenre(genreName);
-            movieGenres.add(genre);
-            movieGenreService.createMovieGenre(genre);
-        }
+        LevelDto levelDto = new LevelDto();
+        levelDto.setId(levelId);
+        movieDto.setLevelDto(levelDto);
 
-        // Создаем ассоциации между фильмом и жанрами
-        Set<MovieGenreAssociation> associations = new HashSet<>();
-        for (MovieGenre genre : movieGenres) {
-            MovieGenreAssociation association = new MovieGenreAssociation();
-            association.setMovie(movie);
-            association.setGenre(genre);
-            associations.add(association);
-        }
-        movie.setAssociations(associations);
+        MovieDto createdMovie = movieService.createMovie(movieDto, file);
 
-        Movie createdMovie = movieService.createMovie(movie, file);
-
-        return ResponseEntity.ok().body(createdMovie);
+        return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
     }
 
-    @PostMapping("/genre/create")
-    public MovieGenre createMovieGenre(@RequestBody MovieGenre movieGenre) {
-        return movieGenreService.createMovieGenre(movieGenre);
-    }
 
     @GetMapping("/getById/{movieId}")
     public Movie getById(@PathVariable Integer movieId) {
         return movieService.getMovieById(movieId);
     }
 
+    @GetMapping("/getAll")
+    public ResponseEntity<List<MovieDto>> getAllMovies() {
+        List<MovieDto> movieDto = movieService.getAllMovies();
+        return new ResponseEntity<>(movieDto, HttpStatus.OK);
+    }
 }

@@ -1,22 +1,25 @@
-package com.example.DUD_Project.entity.user;
+package com.example.DUD_Project.entity.content;
 
+import com.example.DUD_Project.entity.Level;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name = "sprach_niveau")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Level {
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Integer id;
 
-    @Column(name = "niveau_name")
-    String levelName; // A1, A2, etc.
+    String title, description, author, content;
+
+    @ManyToOne
+    @JoinColumn(name = "level_id")
+    Level level;
 }

@@ -1,31 +1,51 @@
-package com.example.DUD_Project.service.impl;
+package com.example.DUD_Project.service.impl.content;
 
+import com.example.DUD_Project.dto.content.MovieDto;
+import com.example.DUD_Project.entity.Level;
 import com.example.DUD_Project.entity.content.Movie;
-import com.example.DUD_Project.repository.MovieRepository;
-import com.example.DUD_Project.service.MovieService;
+import com.example.DUD_Project.mappers.LevelMapper;
+import com.example.DUD_Project.mappers.content.MovieMapper;
+import com.example.DUD_Project.repository.LevelRepository;
+import com.example.DUD_Project.repository.content.MovieRepository;
+import com.example.DUD_Project.service.content.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import org.webjars.NotFoundException;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class MovieServiceImpl implements MovieService {
 
     private final MovieRepository movieRepository;
+    private final LevelRepository levelRepository;
+    private final MovieMapper movieMapper;
+    private final LevelMapper levelMapper;
+
 
     @Override
-    public Movie createMovie(Movie movie, MultipartFile file) {
+    public MovieDto createMovie(MovieDto movieDto, MultipartFile file) {
+        Movie movie = movieMapper.toEntity(movieDto);
+        Level level = levelRepository.findById(movieDto.getLevelDto().getId())
+                .orElseThrow(() -> new NotFoundException("Level not found with ID: " + movieDto.getLevelDto().getId()));
+
         String filePath = saveFile(file);
+
+        movie.setLevel(level);
         movie.setFilePath(filePath);
 
-        return movieRepository.save(movie);
+        movie = movieRepository.save(movie);
+
+        return movieMapper.toDto(movie);
     }
 
     private String saveFile(MultipartFile file) {
@@ -52,5 +72,15 @@ public class MovieServiceImpl implements MovieService {
         }
 
         return movie;
+    }
+
+    @Override
+    public List<MovieDto> getAllMovies() {
+        List<Movie> movies = movieRepository.findAll();
+        return movies.stream().map(movie -> {
+            MovieDto movieDto = movieMapper.toDto(movie);
+            movieDto.setLevelDto(movie.getLevel() != null ? levelMapper.toDto(movie.getLevel()) : null);
+            return movieDto;
+        }).collect(Collectors.toList());
     }
 }

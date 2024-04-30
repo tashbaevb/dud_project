@@ -1,11 +1,12 @@
 package com.example.DUD_Project.entity.user;
 
+import com.example.DUD_Project.entity.Level;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name = "user_niveau")
+@Table(name = "user_level")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -22,6 +23,6 @@ public class UsersLevel {
     User user;
 
     @ManyToOne
-    @JoinColumn(name = "niveau_id")
+    @JoinColumn(name = "level_id")
     Level level;
 }
