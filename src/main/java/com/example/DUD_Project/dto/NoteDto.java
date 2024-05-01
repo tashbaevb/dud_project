@@ -9,8 +9,9 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LessonDTO {
+public class NoteDto {
 
     Integer id;
-    String lessonName;
+
+    String message;
 }

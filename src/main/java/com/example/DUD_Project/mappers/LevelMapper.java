@@ -4,9 +4,10 @@ import com.example.DUD_Project.dto.LevelDto;
 import com.example.DUD_Project.entity.Level;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class LevelMapper {
 

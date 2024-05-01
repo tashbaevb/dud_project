@@ -13,6 +13,4 @@ public interface UserService {
     void delete(Authentication authentication);
 
     UserResponseDto getUserProfile(Authentication authentication);
-
-    List<User> getAll();
 }

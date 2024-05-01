@@ -15,34 +15,11 @@ import java.util.Optional;
 public class UserMapper {
     private final ModelMapper mapper;
 
-    public List<UserDto> convertToDTOList(List<User> users) {
-        List<UserDto> userDtoList = new ArrayList<>();
-
-        for (User user : users) {
-            userDtoList.add(convertToDto(user));
-        }
-        return userDtoList;
-    }
-
     public User convertToEntity(UserDto userDto) {
         return mapper.map(userDto, User.class);
     }
 
     public UserDto convertToDto(User user) {
         return mapper.map(user, UserDto.class);
-    }
-
-    public UserDto convertToDtoOpT(Optional<User> user) {
-        return mapper.map(user, UserDto.class);
-    }
-
-    public List<UserDto> convertToDtoList(List<User> users) {
-        List<UserDto> userDtoList = new ArrayList<>();
-
-        for (User user : users) {
-            userDtoList.add(mapper.map(user, UserDto.class));
-        }
-
-        return userDtoList;
     }
 }

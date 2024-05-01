@@ -1,5 +1,6 @@
 package com.example.DUD_Project.entity;
 
+import com.example.DUD_Project.entity.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -10,11 +11,16 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Level {
+public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    String levelName; // A1, A2, etc.
+    @Column(nullable = false)
+    String message;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 }

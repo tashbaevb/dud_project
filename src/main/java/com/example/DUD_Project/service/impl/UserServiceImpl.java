@@ -51,10 +51,6 @@ public class UserServiceImpl implements UserService {
         } else throw new NotFoundException("User not found");
     }
 
-    @Override
-    public List<User> getAll() {
-        return userRepository.findAll();
-    }
 
     @Override
     public void delete(Authentication authentication) {
