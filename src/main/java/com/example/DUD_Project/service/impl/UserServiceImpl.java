@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
             UserResponseDto responseDto = new UserResponseDto();
             responseDto.setEmail(user.getEmail());
 
-            List<String> levelNames = user.getUsersLevels().stream()
+            List<String> levelNames = user.getUserLevels().stream()
                     .map(usersLevel -> usersLevel.getLevel().getLevelName())
                     .collect(Collectors.toList());
 

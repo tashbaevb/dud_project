@@ -62,7 +62,6 @@ public class NoteServiceImpl implements NoteService {
     @Override
     public ResponseEntity<NoteDto> update(Integer noteId, NoteDto noteDto, Authentication authentication) {
         User user = getCurrentUser(authentication);
-
         Note noteToUpdate = noteRepository.findById(noteId)
                 .orElseThrow(() -> new IllegalArgumentException("Note not found"));
 

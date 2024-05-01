@@ -33,6 +33,6 @@ public class User {
     @Column(name = "reset_token_expire_time")
     LocalDateTime resetTokenExpireTime;
 
-    @OneToMany(mappedBy = "user")
-    Set<UsersLevel> usersLevels = new HashSet<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    Set<UserLevel> userLevels = new HashSet<>();
 }

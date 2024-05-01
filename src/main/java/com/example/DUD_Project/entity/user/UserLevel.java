@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UsersLevel {
+public class UserLevel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

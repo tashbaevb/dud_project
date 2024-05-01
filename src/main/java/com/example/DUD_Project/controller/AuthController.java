@@ -1,5 +1,6 @@
 package com.example.DUD_Project.controller;
 
+import com.example.DUD_Project.dto.user.RegistrationRequest;
 import com.example.DUD_Project.dto.user.UserDto;
 import com.example.DUD_Project.entity.user.User;
 import com.example.DUD_Project.mappers.UserMapper;
@@ -29,16 +30,16 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, String>> register(@RequestBody UserDto userDto) {
-        if (authService.isPresentEmail(userDto.getEmail())) {
-            return ResponseEntity.badRequest().body(Collections.singletonMap("error", "User with email: " + userDto.getEmail() + " already exist "));
+    public ResponseEntity<Map<String, String>> register(@RequestBody RegistrationRequest registrationRequest) {
+        if (authService.isPresentEmail(registrationRequest.getEmail())) {
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", "User with email: " + registrationRequest.getEmail() + " already exist "));
         }
 
-        User user = mapper.convertToEntity(userDto);
-        authService.register(user);
+        User user = mapper.convertToEntity(registrationRequest);
+        authService.register(user, registrationRequest.getLevelIds());
 
-        String accessToken = jwtUtil.generateToken(userDto.getEmail());
-        String refreshToken = jwtUtil.generateRefreshToken(userDto.getEmail());
+        String accessToken = jwtUtil.generateToken(registrationRequest.getEmail());
+        String refreshToken = jwtUtil.generateRefreshToken(registrationRequest.getEmail());
 
         Map<String, String> tokens = new HashMap<>();
         tokens.put("access_token", accessToken);
@@ -46,6 +47,7 @@ public class AuthController {
 
         return ResponseEntity.ok(tokens);
     }
+
 
     @PostMapping("/auth")
     public ResponseEntity<Map<String, String>> auth(@RequestBody UserDto userDto) {
