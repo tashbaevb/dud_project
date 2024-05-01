@@ -12,5 +12,5 @@ import lombok.experimental.FieldDefaults;
 public class LessonDto {
 
     Integer id;
-    String lessonName;
+    String title, description;
 }

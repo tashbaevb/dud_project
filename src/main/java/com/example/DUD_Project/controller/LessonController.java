@@ -1,5 +1,6 @@
 package com.example.DUD_Project.controller;
 
+import com.example.DUD_Project.dto.LessonDto;
 import com.example.DUD_Project.entity.lessonTypes.Grammar;
 import com.example.DUD_Project.entity.Lesson;
 import com.example.DUD_Project.entity.lessonTypes.reading.Reading;
@@ -25,12 +26,12 @@ public class LessonController {
     private final ReadingService readingService;
 
     @PostMapping("/create/{levelId}")
-    public Lesson create(@RequestBody Lesson lesson, @PathVariable Integer levelId) {
-        return lessonService.createLesson(lesson, levelId);
+    public ResponseEntity<LessonDto> create(@RequestBody LessonDto lessonDto, @PathVariable Integer levelId) {
+        return lessonService.createLesson(lessonDto, levelId);
     }
 
     @GetMapping("/getAllByLevel/{levelId}")
-    public ResponseEntity<List<Lesson>> getLessonsByLevel(@PathVariable Integer levelId) {
+    public ResponseEntity<List<LessonDto>> getLessonsByLevel(@PathVariable Integer levelId) {
         return lessonService.getLessonsByLevel(levelId);
     }
 
