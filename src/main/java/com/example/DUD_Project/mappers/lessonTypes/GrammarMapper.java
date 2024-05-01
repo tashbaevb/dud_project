@@ -12,7 +12,6 @@ public class GrammarMapper {
 
     private final ModelMapper modelMapper;
 
-
     public GrammarDto toDto(Grammar grammar) {
         return modelMapper.map(grammar, GrammarDto.class);
     }

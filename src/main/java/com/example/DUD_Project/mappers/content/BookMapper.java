@@ -12,7 +12,6 @@ public class BookMapper {
 
     private final ModelMapper modelMapper;
 
-
     public BookDto toDto(Book book) {
         return modelMapper.map(book, BookDto.class);
     }

@@ -1,8 +1,6 @@
 package com.example.DUD_Project.service.lessonTypes;
 
 import com.example.DUD_Project.dto.lessonTypes.reading.ReadingDto;
-import com.example.DUD_Project.dto.lessonTypes.reading.ReadingQuestionsDto;
-import com.example.DUD_Project.entity.lessonTypes.reading.Reading;
 import com.example.DUD_Project.entity.lessonTypes.reading.ReadingQuestions;
 import com.example.DUD_Project.entity.lessonTypes.listening.AnswerRequest;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,6 @@
 package com.example.DUD_Project.service;
 
 import com.example.DUD_Project.dto.LessonDto;
-import com.example.DUD_Project.entity.Lesson;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

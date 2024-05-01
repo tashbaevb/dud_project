@@ -15,7 +15,6 @@ public class ListeningMapper {
 
     private final ModelMapper modelMapper;
 
-
     public ListeningDto toDto(Listening listening) {
         return modelMapper.map(listening, ListeningDto.class);
     }

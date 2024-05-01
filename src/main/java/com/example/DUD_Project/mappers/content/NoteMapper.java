@@ -23,7 +23,6 @@ public class NoteMapper {
         return modelMapper.map(noteDto, Note.class);
     }
 
-
     public List<NoteDto> toDtoList(List<Note> notes) {
         return notes.stream().map(this::toDto).collect(Collectors.toList());
     }

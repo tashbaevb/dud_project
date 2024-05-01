@@ -1,13 +1,9 @@
 package com.example.DUD_Project.entity.content;
 
 import com.example.DUD_Project.entity.Level;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @AllArgsConstructor

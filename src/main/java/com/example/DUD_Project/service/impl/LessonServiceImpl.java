@@ -9,7 +9,6 @@ import com.example.DUD_Project.repository.LevelRepository;
 import com.example.DUD_Project.service.LessonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

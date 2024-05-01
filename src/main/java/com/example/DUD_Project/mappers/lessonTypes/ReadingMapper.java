@@ -15,7 +15,6 @@ public class ReadingMapper {
 
     private final ModelMapper modelMapper;
 
-
     public ReadingDto toDto(Reading reading) {
         return modelMapper.map(reading, ReadingDto.class);
     }

@@ -1,7 +1,6 @@
 package com.example.DUD_Project.controller.lessonTypes;
 
 import com.example.DUD_Project.dto.lessonTypes.GrammarDto;
-import com.example.DUD_Project.entity.lessonTypes.Grammar;
 import com.example.DUD_Project.service.lessonTypes.GrammarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
