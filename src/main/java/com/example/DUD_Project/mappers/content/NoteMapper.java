@@ -1,7 +1,7 @@
-package com.example.DUD_Project.mappers;
+package com.example.DUD_Project.mappers.content;
 
-import com.example.DUD_Project.dto.NoteDto;
-import com.example.DUD_Project.entity.Note;
+import com.example.DUD_Project.dto.content.NoteDto;
+import com.example.DUD_Project.entity.content.Note;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

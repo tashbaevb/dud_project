@@ -1,6 +1,6 @@
-package com.example.DUD_Project.service;
+package com.example.DUD_Project.service.content;
 
-import com.example.DUD_Project.dto.NoteDto;
+import com.example.DUD_Project.dto.content.NoteDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 

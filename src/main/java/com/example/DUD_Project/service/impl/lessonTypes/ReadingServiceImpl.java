@@ -22,10 +22,14 @@ public class ReadingServiceImpl implements ReadingService {
     private final LessonRepository lessonRepository;
 
 
+    private Lesson getLessonById(Integer lessonId) {
+        return lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+    }
+
     @Override
     public Reading createReading(Integer lessonId, Reading reading) {
-        Lesson lesson = lessonRepository.findById(lessonId)
-                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+        Lesson lesson = getLessonById(lessonId);
 
         reading.setLesson(lesson);
         return readingRepository.save(reading);
@@ -34,7 +38,7 @@ public class ReadingServiceImpl implements ReadingService {
     @Override
     public Reading addQuestionsAndAnswers(Integer readingId, List<ReadingQuestions> questions) {
         Reading reading = readingRepository.findById(readingId)
-                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Reading not found"));
 
         for (ReadingQuestions question : questions) {
             question.setReading(reading);
@@ -46,8 +50,7 @@ public class ReadingServiceImpl implements ReadingService {
 
     @Override
     public Reading getReadingByLessonId(Integer lessonId) {
-        Lesson lesson = lessonRepository.findById(lessonId)
-                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+        Lesson lesson = getLessonById(lessonId);
         return readingRepository.findByLesson(lesson);
     }
 

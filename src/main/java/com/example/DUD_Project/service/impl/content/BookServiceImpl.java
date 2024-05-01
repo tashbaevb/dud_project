@@ -8,6 +8,7 @@ import com.example.DUD_Project.repository.content.BookRepository;
 import com.example.DUD_Project.repository.LevelRepository;
 import com.example.DUD_Project.service.content.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
@@ -24,19 +25,20 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public BookDto createBook(BookDto bookDto) {
+    public ResponseEntity<BookDto> createBook(BookDto bookDto) {
         Book book = bookMapper.toEntity(bookDto);
         Level level = levelRepository.findById(bookDto.getLevel().getId())
                 .orElseThrow(() -> new NotFoundException("Level not found"));
         book.setLevel(level);
-
         book = bookRepository.save(book);
-        return bookMapper.toDto(book);
+
+
+        return ResponseEntity.ok(bookMapper.toDto(book));
     }
 
     @Override
-    public List<BookDto> getAll() {
+    public ResponseEntity<List<BookDto>> getAll() {
         List<Book> books = bookRepository.findAll();
-        return books.stream().map(bookMapper::toDto).collect(Collectors.toList());
+        return ResponseEntity.ok(books.stream().map(bookMapper::toDto).collect(Collectors.toList()));
     }
 }

@@ -1,12 +1,12 @@
-package com.example.DUD_Project.service.impl;
+package com.example.DUD_Project.service.impl.content;
 
-import com.example.DUD_Project.dto.NoteDto;
-import com.example.DUD_Project.entity.Note;
+import com.example.DUD_Project.dto.content.NoteDto;
+import com.example.DUD_Project.entity.content.Note;
 import com.example.DUD_Project.entity.user.User;
-import com.example.DUD_Project.mappers.NoteMapper;
-import com.example.DUD_Project.repository.NoteRepository;
+import com.example.DUD_Project.mappers.content.NoteMapper;
+import com.example.DUD_Project.repository.content.NoteRepository;
 import com.example.DUD_Project.repository.UserRepository;
-import com.example.DUD_Project.service.NoteService;
+import com.example.DUD_Project.service.content.NoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

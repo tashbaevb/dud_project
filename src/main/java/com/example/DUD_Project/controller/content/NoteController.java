@@ -1,7 +1,7 @@
-package com.example.DUD_Project.controller;
+package com.example.DUD_Project.controller.content;
 
-import com.example.DUD_Project.dto.NoteDto;
-import com.example.DUD_Project.service.NoteService;
+import com.example.DUD_Project.dto.content.NoteDto;
+import com.example.DUD_Project.service.content.NoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;

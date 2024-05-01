@@ -33,11 +33,15 @@ public class ListeningServiceImpl implements ListeningService {
     private final ListeningQuestionsRepository listeningQuestionsRepository;
     private final LessonRepository lessonRepository;
 
+    private Lesson getLessonById(Integer lessonId) {
+        return lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+    }
+
 
     @Override
     public Listening createListening(Integer lessonId, Listening listening, MultipartFile file) {
-        Lesson lesson = lessonRepository.findById(lessonId)
-                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+        Lesson lesson = getLessonById(lessonId);
         String filePath = saveMp3File(file);
         listening.setMp3FilePath(filePath);
 
@@ -61,7 +65,6 @@ public class ListeningServiceImpl implements ListeningService {
     }
 
 
-
     @Override
     public Listening addQuestionsAndAnswers(Integer listeningId, List<ListeningQuestions> questions) {
         Listening listening = listeningRepository.findById(listeningId)
@@ -76,23 +79,10 @@ public class ListeningServiceImpl implements ListeningService {
 
     @Override
     public Listening getListeningByLessonId(Integer lessonId) {
-        Lesson lesson = lessonRepository.findById(lessonId)
-                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+        Lesson lesson = getLessonById(lessonId);
 
         return listeningRepository.findByLesson(lesson);
     }
-
-
-//    @Override
-//    public Listening getListening(Integer listeningId) {
-//        Listening listening = listeningRepository.findById(listeningId)
-//                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
-//
-//        String mp3FileName = Paths.get(listening.getMp3FilePath()).getFileName().toString();
-//        listening.setMp3FilePath("/hFile/" + mp3FileName);
-//
-//        return listening;
-//    }
 
 
     @Override

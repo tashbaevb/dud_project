@@ -16,20 +16,22 @@ public class GrammarServiceImpl implements GrammarService {
     private final LessonRepository lessonRepository;
 
 
+    private Lesson getLessonById(Integer lessonId) {
+        return lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+    }
+
     @Override
     public Grammar createGrammar(Integer lessonId, Grammar grammar) {
-        Lesson lesson = lessonRepository.findById(lessonId)
-                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+        Lesson lesson = getLessonById(lessonId);
         grammar.setLesson(lesson);
 
         return grammarRepository.save(grammar);
     }
 
-
     @Override
     public Grammar getGrammarByLessonId(Integer lessonId) {
-        Lesson lesson = lessonRepository.findById(lessonId)
-                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+        Lesson lesson = getLessonById(lessonId);
         return grammarRepository.findByLesson(lesson);
     }
 }

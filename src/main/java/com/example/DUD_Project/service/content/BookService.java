@@ -1,12 +1,13 @@
 package com.example.DUD_Project.service.content;
 
 import com.example.DUD_Project.dto.content.BookDto;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface BookService {
 
-    BookDto createBook(BookDto bookDto);
+    ResponseEntity<BookDto> createBook(BookDto bookDto);
 
-    List<BookDto> getAll();
+    ResponseEntity<List<BookDto>> getAll();
 }

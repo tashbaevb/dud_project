@@ -1,4 +1,4 @@
-package com.example.DUD_Project.entity;
+package com.example.DUD_Project.entity.content;
 
 import com.example.DUD_Project.entity.user.User;
 import jakarta.persistence.*;
