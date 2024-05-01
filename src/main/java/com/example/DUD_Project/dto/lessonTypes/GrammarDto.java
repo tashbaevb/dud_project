@@ -2,7 +2,6 @@ package com.example.DUD_Project.dto.lessonTypes;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Data
 @AllArgsConstructor
@@ -10,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GrammarResponseDto {
+public class GrammarDto {
+
+    Integer id;
 
     String title, description;
 }

@@ -20,18 +20,17 @@ import java.util.stream.Collectors;
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
-    private final LevelRepository levelRepository;
+    //    private final LevelRepository levelRepository;
     private final BookMapper bookMapper;
 
 
     @Override
     public ResponseEntity<BookDto> createBook(BookDto bookDto) {
         Book book = bookMapper.toEntity(bookDto);
-        Level level = levelRepository.findById(bookDto.getLevel().getId())
-                .orElseThrow(() -> new NotFoundException("Level not found"));
-        book.setLevel(level);
+//        Level level = levelRepository.findById(bookDto.getLevel().getId())
+//                .orElseThrow(() -> new NotFoundException("Level not found"));
+//        book.setLevel(level);
         book = bookRepository.save(book);
-
 
         return ResponseEntity.ok(bookMapper.toDto(book));
     }

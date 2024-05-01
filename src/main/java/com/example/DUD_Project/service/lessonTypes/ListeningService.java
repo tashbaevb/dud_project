@@ -1,19 +1,20 @@
 package com.example.DUD_Project.service.lessonTypes;
 
+import com.example.DUD_Project.dto.lessonTypes.listening.ListeningDto;
 import com.example.DUD_Project.entity.lessonTypes.listening.AnswerRequest;
-import com.example.DUD_Project.entity.lessonTypes.listening.Listening;
 import com.example.DUD_Project.entity.lessonTypes.listening.ListeningQuestions;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface ListeningService {
 
-    Listening createListening(Integer lessonId, Listening listening, MultipartFile file);
+    ResponseEntity<ListeningDto> createListening(ListeningDto listeningDto, Integer lessonId, MultipartFile file);
 
-    Listening addQuestionsAndAnswers(Integer listeningId, List<ListeningQuestions> questions);
+    ResponseEntity<ListeningDto> addQuestionsAndAnswers(Integer listeningId, List<ListeningQuestions> questions);
 
-    Listening getListeningByLessonId(Integer lessonId);
+    ResponseEntity<ListeningDto> getListeningByLessonId(Integer lessonId);
 
-    int checkAnswers(Integer listeningId, List<AnswerRequest> answers);
+    ResponseEntity<Integer> checkAnswers(Integer listeningId, List<AnswerRequest> answers);
 }

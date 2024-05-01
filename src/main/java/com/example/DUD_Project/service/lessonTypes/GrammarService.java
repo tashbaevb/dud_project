@@ -1,10 +1,11 @@
 package com.example.DUD_Project.service.lessonTypes;
 
-import com.example.DUD_Project.entity.lessonTypes.Grammar;
+import com.example.DUD_Project.dto.lessonTypes.GrammarDto;
+import org.springframework.http.ResponseEntity;
 
 public interface GrammarService {
 
-    Grammar createGrammar(Integer lessonId, Grammar grammar);
+    ResponseEntity<GrammarDto> createGrammar(Integer lessonId, GrammarDto grammarDto);
 
-    Grammar getGrammarByLessonId(Integer lessonId);
+    ResponseEntity<GrammarDto> getGrammarByLessonId(Integer lessonId);
 }

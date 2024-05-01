@@ -1,10 +1,9 @@
 package com.example.DUD_Project.controller;
 
 import com.example.DUD_Project.dto.LessonDto;
-import com.example.DUD_Project.entity.lessonTypes.Grammar;
-import com.example.DUD_Project.entity.Lesson;
-import com.example.DUD_Project.entity.lessonTypes.reading.Reading;
-import com.example.DUD_Project.entity.lessonTypes.listening.Listening;
+import com.example.DUD_Project.dto.lessonTypes.GrammarDto;
+import com.example.DUD_Project.dto.lessonTypes.listening.ListeningDto;
+import com.example.DUD_Project.dto.lessonTypes.reading.ReadingDto;
 import com.example.DUD_Project.service.lessonTypes.GrammarService;
 import com.example.DUD_Project.service.LessonService;
 import com.example.DUD_Project.service.lessonTypes.ListeningService;
@@ -36,20 +35,17 @@ public class LessonController {
     }
 
     @GetMapping("/get/{lessonId}/grammar")
-    public ResponseEntity<?> getGrammar(@PathVariable Integer lessonId) {
-        Grammar grammar = grammarService.getGrammarByLessonId(lessonId);
-        return grammar != null ? ResponseEntity.ok().body(grammar) : ResponseEntity.notFound().build();
+    public ResponseEntity<GrammarDto> getGrammar(@PathVariable Integer lessonId) {
+        return grammarService.getGrammarByLessonId(lessonId);
     }
 
     @GetMapping("/get/{lessonId}/listening")
-    public ResponseEntity<?> getListening(@PathVariable Integer lessonId) {
-        Listening listening = listeningService.getListeningByLessonId(lessonId);
-        return listening != null ? ResponseEntity.ok().body(listening) : ResponseEntity.notFound().build();
+    public ResponseEntity<ListeningDto> getListening(@PathVariable Integer lessonId) {
+        return listeningService.getListeningByLessonId(lessonId);
     }
 
     @GetMapping("/get/{lessonId}/reading")
-    public ResponseEntity<?> getReading(@PathVariable Integer lessonId) {
-        Reading reading = readingService.getReadingByLessonId(lessonId);
-        return reading != null ? ResponseEntity.ok().body(reading) : ResponseEntity.notFound().build();
+    public ResponseEntity<ReadingDto> getReading(@PathVariable Integer lessonId) {
+        return readingService.getReadingByLessonId(lessonId);
     }
 }

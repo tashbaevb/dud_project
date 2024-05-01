@@ -14,6 +14,8 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BookDto {
 
+    Integer id;
+
     String title, description, author, content;
 
     LevelDto level;
