@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/lesson")
@@ -28,27 +30,26 @@ public class LessonController {
         return lessonService.createLesson(lesson, levelId);
     }
 
-
-    @GetMapping("/get/grammar/{grammarId}")
-    public Object getLesson(@PathVariable Integer grammarId) {
-        Grammar grammar = grammarService.getGrammarById(grammarId);
-
-        return grammar != null ? new GrammarResponseDto(grammar.getTitle(), grammar.getDescription()) : ResponseEntity.notFound().build();
+    @GetMapping("/getAllByLevel/{levelId}")
+    public ResponseEntity<List<Lesson>> getLessonsByLevel(@PathVariable Integer levelId) {
+        return lessonService.getLessonsByLevel(levelId);
     }
 
+    @GetMapping("/get/{lessonId}/grammar")
+    public ResponseEntity<?> getGrammar(@PathVariable Integer lessonId) {
+        Grammar grammar = grammarService.getGrammarByLessonId(lessonId);
+        return grammar != null ? ResponseEntity.ok().body(grammar) : ResponseEntity.notFound().build();
+    }
 
-    @GetMapping("/get/listening/{listeningId}")
-    public ResponseEntity<?> getListening(@PathVariable Integer listeningId) {
-        Listening listening = listeningService.getListening(listeningId);
-
+    @GetMapping("/get/{lessonId}/listening")
+    public ResponseEntity<?> getListening(@PathVariable Integer lessonId) {
+        Listening listening = listeningService.getListeningByLessonId(lessonId);
         return listening != null ? ResponseEntity.ok().body(listening) : ResponseEntity.notFound().build();
     }
 
-
-    @GetMapping("/get/reading/{readingId}")
-    public ResponseEntity<?> getReading(@PathVariable Integer readingId) {
-        Reading reading = readingService.getReading(readingId);
-
+    @GetMapping("/get/{lessonId}/reading")
+    public ResponseEntity<?> getReading(@PathVariable Integer lessonId) {
+        Reading reading = readingService.getReadingByLessonId(lessonId);
         return reading != null ? ResponseEntity.ok().body(reading) : ResponseEntity.notFound().build();
     }
 }

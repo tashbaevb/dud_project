@@ -18,18 +18,18 @@ public class GrammarServiceImpl implements GrammarService {
 
     @Override
     public Grammar createGrammar(Integer lessonId, Grammar grammar) {
-        Lesson lesson = lessonRepository.findById(lessonId).orElse(null);
+        Lesson lesson = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+        grammar.setLesson(lesson);
 
-        if (lesson != null) {
-            grammar.setLesson(lesson);
-            return grammarRepository.save(grammar);
-        }
-
-        return null;
+        return grammarRepository.save(grammar);
     }
 
+
     @Override
-    public Grammar getGrammarById(Integer grammarId) {
-        return grammarRepository.findById(grammarId).orElse(null);
+    public Grammar getGrammarByLessonId(Integer lessonId) {
+        Lesson lesson = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+        return grammarRepository.findByLesson(lesson);
     }
 }

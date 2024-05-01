@@ -24,31 +24,31 @@ public class ReadingServiceImpl implements ReadingService {
 
     @Override
     public Reading createReading(Integer lessonId, Reading reading) {
-        Lesson lesson = lessonRepository.findById(lessonId).orElse(null);
-        if (lesson != null) {
-            reading.setLesson(lesson);
-            return readingRepository.save(reading);
-        }
+        Lesson lesson = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
 
-        return null;
+        reading.setLesson(lesson);
+        return readingRepository.save(reading);
     }
 
     @Override
     public Reading addQuestionsAndAnswers(Integer readingId, List<ReadingQuestions> questions) {
-        Reading reading = readingRepository.findById(readingId).orElse(null);
-        if (reading != null) {
-            for (ReadingQuestions question : questions) {
-                question.setReading(reading);
-                readingQuestionsRepository.save(question);
-            }
+        Reading reading = readingRepository.findById(readingId)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+
+        for (ReadingQuestions question : questions) {
+            question.setReading(reading);
+            readingQuestionsRepository.save(question);
         }
 
         return reading;
     }
 
     @Override
-    public Reading getReading(Integer readingId) {
-        return readingRepository.findById(readingId).orElse(null);
+    public Reading getReadingByLessonId(Integer lessonId) {
+        Lesson lesson = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+        return readingRepository.findByLesson(lesson);
     }
 
     @Override

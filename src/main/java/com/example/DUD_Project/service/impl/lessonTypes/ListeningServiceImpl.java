@@ -36,20 +36,17 @@ public class ListeningServiceImpl implements ListeningService {
 
     @Override
     public Listening createListening(Integer lessonId, Listening listening, MultipartFile file) {
-        Lesson lesson = lessonRepository.findById(lessonId).orElse(null);
-        if (lesson != null) {
-            String filePath = saveMp3File(file);
-            listening.setMp3FilePath(filePath);
+        Lesson lesson = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+        String filePath = saveMp3File(file);
+        listening.setMp3FilePath(filePath);
 
-            listening.setLesson(lesson);
+        listening.setLesson(lesson);
 
-            return listeningRepository.save(listening);
-        }
-        return null;
+        return listeningRepository.save(listening);
     }
 
     private String saveMp3File(MultipartFile file) {
-
         try {
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
             Path uploadPath = Paths.get("src/main/resources/hFile");
@@ -63,26 +60,34 @@ public class ListeningServiceImpl implements ListeningService {
 
     @Override
     public Listening addQuestionsAndAnswers(Integer listeningId, List<ListeningQuestions> questions) {
-        Listening listening = listeningRepository.findById(listeningId).orElse(null);
-        if (listening != null) {
-            for (ListeningQuestions question : questions) {
-                question.setListening(listening);
-                listeningQuestionsRepository.save(question);
-            }
+        Listening listening = listeningRepository.findById(listeningId)
+                .orElseThrow(() -> new IllegalArgumentException("Listening not found"));
+        for (ListeningQuestions question : questions) {
+            question.setListening(listening);
+            listeningQuestionsRepository.save(question);
         }
+
         return listening;
     }
 
     @Override
-    public Listening getListening(Integer listeningId) {
-        Listening listening = listeningRepository.findById(listeningId).orElse(null);
-        if (listening != null) {
-            String mp3FileName = Paths.get(listening.getMp3FilePath()).getFileName().toString();
-            listening.setMp3FilePath("/hFile/" + mp3FileName);
-        }
-
-        return listening;
+    public Listening getListeningByLessonId(Integer lessonId) {
+        Lesson lesson = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+        return listeningRepository.findByLesson(lesson);
     }
+
+
+//    @Override
+//    public Listening getListening(Integer listeningId) {
+//        Listening listening = listeningRepository.findById(listeningId)
+//                .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+//
+//        String mp3FileName = Paths.get(listening.getMp3FilePath()).getFileName().toString();
+//        listening.setMp3FilePath("/hFile/" + mp3FileName);
+//
+//        return listening;
+//    }
 
 
     @Override

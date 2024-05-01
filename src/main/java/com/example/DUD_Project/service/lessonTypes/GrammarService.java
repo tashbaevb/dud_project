@@ -6,5 +6,5 @@ public interface GrammarService {
 
     Grammar createGrammar(Integer lessonId, Grammar grammar);
 
-    Grammar getGrammarById(Integer grammarId);
+    Grammar getGrammarByLessonId(Integer lessonId);
 }

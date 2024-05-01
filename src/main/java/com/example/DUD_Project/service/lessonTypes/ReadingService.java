@@ -12,7 +12,7 @@ public interface ReadingService {
 
     Reading addQuestionsAndAnswers(Integer readingId, List<ReadingQuestions> questions);
 
-    Reading getReading(Integer readingId);
+    Reading getReadingByLessonId(Integer readingId);
 
     int checkAnswers(Integer readingId, List<AnswerRequest> answers);
 }

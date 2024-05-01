@@ -13,7 +13,7 @@ public interface ListeningService {
 
     Listening addQuestionsAndAnswers(Integer listeningId, List<ListeningQuestions> questions);
 
-    Listening getListening(Integer listeningId);
+    Listening getListeningByLessonId(Integer lessonId);
 
     int checkAnswers(Integer listeningId, List<AnswerRequest> answers);
 }
