@@ -50,12 +50,16 @@ public class ListeningServiceImpl implements ListeningService {
         try {
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
             Path uploadPath = Paths.get("src/main/resources/hFile");
-            Files.copy(file.getInputStream(), uploadPath.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
-            return uploadPath.toString() + "/" + fileName;
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            String res = "hFile/" + fileName;
+
+            return res;
         } catch (IOException e) {
             throw new RuntimeException("Failed to store");
         }
     }
+
 
 
     @Override
@@ -74,6 +78,7 @@ public class ListeningServiceImpl implements ListeningService {
     public Listening getListeningByLessonId(Integer lessonId) {
         Lesson lesson = lessonRepository.findById(lessonId)
                 .orElseThrow(() -> new IllegalArgumentException("Lesson not found"));
+
         return listeningRepository.findByLesson(lesson);
     }
 

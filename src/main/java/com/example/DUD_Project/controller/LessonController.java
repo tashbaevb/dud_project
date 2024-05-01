@@ -1,6 +1,5 @@
 package com.example.DUD_Project.controller;
 
-import com.example.DUD_Project.dto.lessonTypes.GrammarResponseDto;
 import com.example.DUD_Project.entity.lessonTypes.Grammar;
 import com.example.DUD_Project.entity.Lesson;
 import com.example.DUD_Project.entity.lessonTypes.reading.Reading;
