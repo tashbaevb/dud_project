@@ -12,6 +12,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MovieDto {
 
+    Integer id;
+
     String title, description, country, filePath;
 
     LevelDto levelDto;

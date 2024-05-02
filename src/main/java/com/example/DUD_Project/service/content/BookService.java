@@ -10,4 +10,6 @@ public interface BookService {
     ResponseEntity<BookDto> createBook(BookDto bookDto);
 
     ResponseEntity<List<BookDto>> getAll();
+
+    ResponseEntity<BookDto> getById(Integer id);
 }

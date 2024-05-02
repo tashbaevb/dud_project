@@ -33,4 +33,14 @@ public class BookServiceImpl implements BookService {
         List<Book> books = bookRepository.findAll();
         return ResponseEntity.ok(books.stream().map(bookMapper::toDto).collect(Collectors.toList()));
     }
+
+    @Override
+    public ResponseEntity<BookDto> getById(Integer id) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Not found"));
+
+        BookDto bookDto = bookMapper.toDto(book);
+
+        return ResponseEntity.ok(bookDto);
+    }
 }
