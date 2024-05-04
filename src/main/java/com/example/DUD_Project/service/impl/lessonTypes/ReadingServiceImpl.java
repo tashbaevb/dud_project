@@ -40,6 +40,7 @@ public class ReadingServiceImpl implements ReadingService {
 
         Reading savedReading = readingRepository.save(reading);
         ReadingDto savedReadingDto = readingMapper.toDto(savedReading);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(savedReadingDto);
     }
 

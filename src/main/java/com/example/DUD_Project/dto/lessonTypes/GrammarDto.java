@@ -13,5 +13,5 @@ public class GrammarDto {
 
     Integer id;
 
-    String title, description;
+    String title, description, imgPath;
 }

@@ -39,7 +39,6 @@ public class MovieServiceImpl implements MovieService {
                 .orElseThrow(() -> new NotFoundException("Level not found with ID: " + movieDto.getLevelDto().getId()));
 
         String filePath = saveFile(file);
-
         movie.setLevel(level);
         movie.setFilePath(filePath);
 

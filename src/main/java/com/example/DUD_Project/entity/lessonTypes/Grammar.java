@@ -19,6 +19,8 @@ public class Grammar {
 
     String title, description;
 
+    String imgPath;
+
     @OneToOne
     @JoinColumn(name = "lesson_id")
     Lesson lesson;

@@ -11,6 +11,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 @Service
 @RequiredArgsConstructor
@@ -27,10 +35,13 @@ public class GrammarServiceImpl implements GrammarService {
     }
 
     @Override
-    public ResponseEntity<GrammarDto> createGrammar(Integer lessonId, GrammarDto grammarDto) {
+    public ResponseEntity<GrammarDto> createGrammar(GrammarDto grammarDto, MultipartFile file, Integer lessonId) {
         Lesson lesson = getLessonById(lessonId);
         Grammar grammar = grammarMapper.toEntity(grammarDto);
+
+        String imgPath = saveImgFile(file);
         grammar.setLesson(lesson);
+        grammar.setImgPath(imgPath);
 
         Grammar savedGrammar = grammarRepository.save(grammar);
         GrammarDto savedGrammarDto = grammarMapper.toDto(savedGrammar);
@@ -38,16 +49,30 @@ public class GrammarServiceImpl implements GrammarService {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedGrammarDto);
     }
 
+    private String saveImgFile(MultipartFile file) {
+        try {
+            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+            Path uploadPath = Paths.get("src/main/resources/media/grammar");
+
+            Files.createDirectories(uploadPath);
+
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            return "media/grammar/" + fileName;
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to store");
+        }
+    }
+
     @Override
     public ResponseEntity<GrammarDto> getGrammarByLessonId(Integer lessonId) {
         Lesson lesson = getLessonById(lessonId);
         Grammar grammar = grammarRepository.findByLesson(lesson);
-
         if (grammar == null) {
             return ResponseEntity.notFound().build();
         }
-        GrammarDto grammarDto = grammarMapper.toDto(grammar);
 
+        GrammarDto grammarDto = grammarMapper.toDto(grammar);
         return ResponseEntity.ok(grammarDto);
     }
 }

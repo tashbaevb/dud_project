@@ -46,6 +46,7 @@ public class ListeningServiceImpl implements ListeningService {
     public ResponseEntity<ListeningDto> createListening(ListeningDto listeningDto, Integer lessonId, MultipartFile file) {
         Lesson lesson = getLessonById(lessonId);
         Listening listening = listeningMapper.toEntity(listeningDto);
+
         String filePath = saveMp3File(file);
         listening.setMp3FilePath(filePath);
         listening.setLesson(lesson);
@@ -86,7 +87,6 @@ public class ListeningServiceImpl implements ListeningService {
     public ResponseEntity<ListeningDto> getListeningByLessonId(Integer lessonId) {
         Lesson lesson = getLessonById(lessonId);
         Listening listening = listeningRepository.findByLesson(lesson);
-
         if (listening == null) {
             return ResponseEntity.notFound().build();
         }
