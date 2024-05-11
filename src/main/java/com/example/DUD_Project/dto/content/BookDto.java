@@ -14,7 +14,7 @@ public class BookDto {
 
     Integer id;
 
-    String title, description, author, content;
+    String title, description, author, content, filePath;
 
     LevelDto level;
 }

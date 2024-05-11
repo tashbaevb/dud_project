@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @RequiredArgsConstructor
 public class BookMapper {
@@ -18,5 +21,9 @@ public class BookMapper {
 
     public Book toEntity(BookDto bookDto) {
         return modelMapper.map(bookDto, Book.class);
+    }
+
+    public List<BookDto> toDtoList(List<Book> books) {
+        return books.stream().map(this::toDto).collect(Collectors.toList());
     }
 }

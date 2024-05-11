@@ -19,6 +19,8 @@ public class Book {
 
     String title, description, author, content;
 
+    String filePath;
+
     @ManyToOne
     @JoinColumn(name = "level_id")
     Level level;
