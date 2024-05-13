@@ -1,11 +1,13 @@
 package com.example.DUD_Project.controller;
 
+import com.example.DUD_Project.dto.user.UpdateRequest;
 import com.example.DUD_Project.dto.user.UserDto;
 import com.example.DUD_Project.dto.user.UserResponseDto;
 import com.example.DUD_Project.entity.user.User;
 import com.example.DUD_Project.mappers.UserMapper;
 import com.example.DUD_Project.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,13 +27,11 @@ public class UserController {
 
 
     @PutMapping("/update")
-    public UserDto update(@RequestBody UserDto userDto, Authentication authentication) {
-        User user = userMapper.convertToEntity(userDto);
-        User updatedUser = userService.update(user, authentication);
-
-        return userMapper.convertToDto(updatedUser);
+    public ResponseEntity<UserDto> update(@RequestBody UpdateRequest updateRequest, Authentication authentication) {
+        User user = userMapper.convertToEntity(updateRequest);
+        User updatedUser = userService.update(user, updateRequest.getLevelIds(), authentication);
+        return ResponseEntity.ok(userMapper.convertToDto(updatedUser));
     }
-
 
     @DeleteMapping("/delete")
     public void delete(Authentication authentication) {

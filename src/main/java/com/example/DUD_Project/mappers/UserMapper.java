@@ -1,7 +1,9 @@
 package com.example.DUD_Project.mappers;
 
 import com.example.DUD_Project.dto.user.RegistrationRequest;
+import com.example.DUD_Project.dto.user.UpdateRequest;
 import com.example.DUD_Project.dto.user.UserDto;
+import com.example.DUD_Project.dto.user.UserResponseDto;
 import com.example.DUD_Project.entity.user.User;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -15,6 +17,11 @@ public class UserMapper {
     public User convertToEntity(UserDto userDto) {
         return mapper.map(userDto, User.class);
     }
+
+    public User convertToEntity(UpdateRequest updateRequest) {
+        return mapper.map(updateRequest, User.class);
+    }
+
 
     public User convertToEntity(RegistrationRequest registrationRequest) {
         return mapper.map(registrationRequest, User.class);

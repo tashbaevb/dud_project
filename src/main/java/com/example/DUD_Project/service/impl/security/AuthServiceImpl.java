@@ -50,7 +50,6 @@ public class AuthServiceImpl implements AuthService {
             userLevel.setLevel(level);
             userLevelRepository.save(userLevel);
         }
-
     }
 
     @Override
