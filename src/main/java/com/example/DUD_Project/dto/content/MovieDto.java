@@ -14,7 +14,7 @@ public class MovieDto {
 
     Integer id;
 
-    String title, description, country, filePath;
+    String title, description, country, filePath, imgPath;
 
     LevelDto levelDto;
 }

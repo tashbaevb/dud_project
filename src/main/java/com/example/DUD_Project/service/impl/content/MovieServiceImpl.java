@@ -33,14 +33,17 @@ public class MovieServiceImpl implements MovieService {
 
 
     @Override
-    public MovieDto createMovie(MovieDto movieDto, MultipartFile file) {
+    public MovieDto createMovie(MovieDto movieDto, MultipartFile file, MultipartFile image) {
         Movie movie = movieMapper.toEntity(movieDto);
         Level level = levelRepository.findById(movieDto.getLevelDto().getId())
                 .orElseThrow(() -> new NotFoundException("Level not found with ID: " + movieDto.getLevelDto().getId()));
 
         String filePath = saveFile(file);
+        String imagePath = saveFile(image);
+
         movie.setLevel(level);
         movie.setFilePath(filePath);
+        movie.setImgPath(imagePath);
 
         movie = movieRepository.save(movie);
 
@@ -56,7 +59,8 @@ public class MovieServiceImpl implements MovieService {
 
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-            return filePath.toString();
+
+            return "media/movies/" + fileName;
         } catch (IOException e) {
             throw new RuntimeException("Failed to store file", e);
         }

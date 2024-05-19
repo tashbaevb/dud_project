@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MovieService {
 
-    MovieDto createMovie(MovieDto movieDto, MultipartFile file);
+    MovieDto createMovie(MovieDto movieDto, MultipartFile file, MultipartFile image);
 
     Movie getMovieById(Integer movieId);
 

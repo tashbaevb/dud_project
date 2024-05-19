@@ -21,6 +21,7 @@ public class MovieController {
 
     @PostMapping("/create")
     public ResponseEntity<MovieDto> createMovie(@RequestParam("file") MultipartFile file,
+                                                @RequestParam("image") MultipartFile image,
                                                 @RequestParam("title") String title,
                                                 @RequestParam("description") String description,
                                                 @RequestParam("country") String country,
@@ -34,7 +35,7 @@ public class MovieController {
         levelDto.setId(levelId);
         movieDto.setLevelDto(levelDto);
 
-        MovieDto createdMovie = movieService.createMovie(movieDto, file);
+        MovieDto createdMovie = movieService.createMovie(movieDto, file, image);
 
         return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
     }

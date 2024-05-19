@@ -1,6 +1,7 @@
-package com.example.DUD_Project.entity.content;
+package com.example.DUD_Project.entity;
 
-import com.example.DUD_Project.entity.Level;
+import com.example.DUD_Project.entity.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -11,17 +12,17 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Movie {
+public class Feedback {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    String title, description, country;
+    @Column(nullable = false)
+    String feedback;
 
-    String filePath, imgPath;
-
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "level_id")
-    Level level;
+    @JoinColumn(name = "user_id")
+    User user;
 }
